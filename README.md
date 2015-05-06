@@ -3,7 +3,7 @@
 The main class, ImageButton, is a view that accept images for four state: default, over, pressed and disabled. You have several options to build that images:
 
 - Provide all images directly
-- Build images from one compound image, where all images goes one after another using **SliceImageButtonBuilder* class
+- Build images from one compound image, where all images goes one after another using **SliceImageButtonBuilder** class
 - Tint template image with different colors using **TintImageButtonBuilder** class
 - Tint template image with text using **TintTextImageButtonBuilder** class
 

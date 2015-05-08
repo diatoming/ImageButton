@@ -27,10 +27,11 @@ public class ImageButton: NSView {
         }
     }
 
+    public var mouseOver = false
+    public var pressed = false
+
     private var trackedArea: NSTrackingArea?
-    private var mouseOver = false
-    private var pressed = false
-    
+
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         self.postInit()
@@ -48,6 +49,7 @@ public class ImageButton: NSView {
     }
     
     private func postInit() {
+        self.translatesAutoresizingMaskIntoConstraints = false;
         self.setContentCompressionResistancePriority(1000, forOrientation: .Horizontal)
         self.setContentCompressionResistancePriority(1000, forOrientation: .Vertical)
         self.setContentHuggingPriority(1000, forOrientation: .Horizontal)

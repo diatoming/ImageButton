@@ -66,4 +66,18 @@ public class TintTextImageButtonBuilder {
 
 }
 
+public extension ImageButton {
+    public convenience init(image: NSImage, text: String, height: CGFloat, defaultColor: NSColor, overColor: NSColor, pressedColor: NSColor, disabledColor: NSColor, font: NSFont, textXOffset: CGFloat, textYOffset: CGFloat) {
+        let imageBuilder = TintTextImageButtonBuilder(height: height)
+        imageBuilder.defaultColor = defaultColor
+        imageBuilder.overColor = overColor
+        imageBuilder.pressedColor = pressedColor
+        imageBuilder.disabledColor = disabledColor
+        imageBuilder.font = font
+        imageBuilder.textXOffset = textXOffset
+        imageBuilder.textYOffset = textYOffset
+        self.init(images: imageBuilder.buildImagesWithImage(image, text: text))
+    }
+}
+
 

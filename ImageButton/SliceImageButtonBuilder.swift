@@ -21,7 +21,7 @@ public class SliceImageButtonBuilder {
     
     public func buildImagesForImage(image: NSImage) -> ImageButtonImages {
         let finalButtonSize = buttonSize ?? NSSize(width: image.size.width, height: image.size.height)
-        let finalSiceWidth = sliceWidth ?? image.size.width
+        let finalSiceWidth = sliceWidth ?? image.size.height
         
         let result = ImageButtonImages()
         result.defaultImage = image.imageSlice(0, size: finalButtonSize, sliceWidth: finalSiceWidth)
@@ -31,6 +31,13 @@ public class SliceImageButtonBuilder {
         return result
     }
     
+}
+
+public extension ImageButton {
+    convenience init (image: NSImage, buttonSize: NSSize? = nil, sliceWidth: CGFloat? = nil) {
+        let imageBuilder = SliceImageButtonBuilder(buttonSize: buttonSize, sliceWidth: sliceWidth)
+        self.init(images: imageBuilder.buildImagesForImage(image))
+    }
 }
 
 extension NSImage {

@@ -30,6 +30,17 @@ public class TintImageButtonBuilder {
     }
 }
 
+extension ImageButton {
+    public convenience init(image: NSImage, defaultColor: NSColor, overColor: NSColor, pressedColor: NSColor, disabledColor: NSColor) {
+        let imageBuilder = TintImageButtonBuilder()
+        imageBuilder.defaultColor = defaultColor
+        imageBuilder.overColor = overColor
+        imageBuilder.pressedColor = pressedColor
+        imageBuilder.disabledColor = disabledColor
+        self.init(images: imageBuilder.buildImagesForImage(image))
+    }
+}
+
 extension NSImage {
     
     func imageWithTint(color: NSColor) -> NSImage {

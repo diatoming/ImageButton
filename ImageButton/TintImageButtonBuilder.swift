@@ -20,12 +20,14 @@ public class TintImageButtonBuilder {
         
     }
 
-    public func buildImagesForImage(image: NSImage) -> ImageButtonImages {
+    public func buildImagesForImage(image: NSImage, size: NSSize? = nil) -> ImageButtonImages {
+        let imageRect = NSRect(origin: NSPoint(), size: image.size)
+        let imageCrop = imageRect.rectForSizeInTheMiddle(size ?? image.size)
         let result = ImageButtonImages()
-        result.defaultImage = image.imageWithTint(self.defaultColor)
-        result.overImage = image.imageWithTint(self.overColor)
-        result.pressedImage = image.imageWithTint(self.pressedColor)
-        result.disabledImage = image.imageWithTint(self.disabledColor)
+        result.defaultImage = image.imageWithTint(self.defaultColor).crop(imageCrop)
+        result.overImage = image.imageWithTint(self.overColor).crop(imageCrop)
+        result.pressedImage = image.imageWithTint(self.pressedColor).crop(imageCrop)
+        result.disabledImage = image.imageWithTint(self.disabledColor).crop(imageCrop)
         return result
     }
 }
@@ -38,6 +40,15 @@ extension ImageButton {
         imageBuilder.pressedColor = pressedColor
         imageBuilder.disabledColor = disabledColor
         self.init(images: imageBuilder.buildImagesForImage(image))
+    }
+
+    public convenience init(image: NSImage, colorScheme: ImageButtonColorScheme, size: NSSize? = nil) {
+        let imageBuilder = TintImageButtonBuilder()
+        imageBuilder.defaultColor = colorScheme.defaultColor
+        imageBuilder.overColor = colorScheme.overColor
+        imageBuilder.pressedColor = colorScheme.pressedColor
+        imageBuilder.disabledColor = colorScheme.disabledColor
+        self.init(images: imageBuilder.buildImagesForImage(image, size:size))
     }
 }
 
@@ -53,6 +64,39 @@ extension NSImage {
         result.unlockFocus()
         
         return result
-        
+    }
+    
+    func crop (rect: NSRect) -> NSImage {
+        let result = NSImage(size: rect.size)
+        result.lockFocus()
+        self.drawInRect(NSRect(origin: NSPoint(), size: rect.size), fromRect: rect, operation: .CompositeSourceOver, fraction: 1, respectFlipped: true, hints: nil)
+        result.unlockFocus()
+        return result
+
     }
 }
+
+extension NSRect {
+    
+    func rectForSizeInTheMiddle (size: NSSize) -> NSRect {
+        let x = self.origin.x + self.size.width / 2 - size.width / 2
+        let y = self.origin.y + self.size.height / 2 - size.height / 2
+        return NSRect(origin: NSPoint(x: x, y: y), size: size)
+    }
+    
+}
+
+public struct ImageButtonColorScheme {
+    public var defaultColor: NSColor
+    public var overColor: NSColor
+    public var pressedColor: NSColor
+    public var disabledColor: NSColor
+    
+    public init(defaultColor: NSColor, overColor: NSColor, pressedColor: NSColor, disabledColor: NSColor) {
+        self.defaultColor = defaultColor
+        self.overColor = overColor
+        self.pressedColor = pressedColor
+        self.disabledColor = disabledColor
+    }
+}
+

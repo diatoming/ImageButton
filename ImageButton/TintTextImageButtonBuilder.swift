@@ -48,14 +48,14 @@ public class TintTextImageButtonBuilder {
         return result
     }
     
-    private func textAttributes(color: NSColor? = nil) -> [NSObject : AnyObject] {
-        let result = NSMutableDictionary()
-        result.setObject(self.font!, forKey: NSFontAttributeName);
+    private func textAttributes(color: NSColor? = nil) -> [String : AnyObject] {
+        var result = [String : AnyObject]()
+        result[NSFontAttributeName] = self.font!
         if color != nil {
-            result.setObject(color!, forKey: NSForegroundColorAttributeName)
+            result[NSForegroundColorAttributeName] = color!
         }
         
-        return result as [NSObject : AnyObject]
+        return result
     }
     
     private func textSize(text: String) -> NSSize {

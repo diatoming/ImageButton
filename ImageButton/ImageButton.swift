@@ -61,7 +61,7 @@ public class ImageButton: NSView {
             self.removeTrackingArea(trackingArea)
         }
         
-        self.trackedArea = NSTrackingArea(rect: self.bounds, options: .MouseEnteredAndExited | .ActiveAlways | .EnabledDuringMouseDrag, owner: self, userInfo: nil)
+        self.trackedArea = NSTrackingArea(rect: self.bounds, options: [.MouseEnteredAndExited, .ActiveAlways, .EnabledDuringMouseDrag], owner: self, userInfo: nil)
         self.addTrackingArea(self.trackedArea!)
     }
     

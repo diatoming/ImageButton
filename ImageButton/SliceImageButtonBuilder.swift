@@ -2,7 +2,7 @@
 //  SliceStateImages.swift
 //  ImageButton
 //
-//  Created by Дмитрий Николаев on 04.05.15.
+//  Created by Dmitry Nikolaev on 04.05.15.
 //  Copyright (c) 2015 Dmitry Nikolaev. All rights reserved.
 //
 

@@ -50,6 +50,15 @@ extension ImageButton {
         imageBuilder.disabledColor = colorScheme.disabledColor
         self.init(images: imageBuilder.buildImagesForImage(image, size:size))
     }
+    
+    public func setImages(image: NSImage, colorScheme: ImageButtonColorScheme, size: NSSize? = nil) {
+        let imageBuilder = TintImageButtonBuilder()
+        imageBuilder.defaultColor = colorScheme.defaultColor
+        imageBuilder.overColor = colorScheme.overColor
+        imageBuilder.pressedColor = colorScheme.pressedColor
+        imageBuilder.disabledColor = colorScheme.disabledColor
+        self.images = imageBuilder.buildImagesForImage(image, size:size)
+    }
 }
 
 extension NSImage {

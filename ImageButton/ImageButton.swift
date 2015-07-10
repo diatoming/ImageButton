@@ -29,6 +29,11 @@ public class ImageButton: NSView {
 
     public var mouseOver = false
     public var pressed = false
+    public var debug = false {
+        didSet {
+            needsDisplay = true
+        }
+    }
 
     private var trackedArea: NSTrackingArea?
 
@@ -113,6 +118,24 @@ public class ImageButton: NSView {
     }
     
     override public func drawRect(dirtyRect: NSRect) {
+        
+        if debug {
+            
+            var color = NSColor.yellowColor()
+            
+            switch state() {
+            case .Over:
+                color = NSColor.greenColor()
+            case .Pressed:
+                color = NSColor.redColor()
+            default:
+                color = NSColor.yellowColor()
+            }
+            
+            color.setFill()
+            NSRectFill(bounds)
+        }
+        
         let image = self.imageByState(self.state())
         image?.drawAtPoint(NSPoint(), fromRect: NSZeroRect, operation: NSCompositingOperation.CompositeSourceOver, fraction: 1)
     }

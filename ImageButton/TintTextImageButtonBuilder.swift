@@ -8,7 +8,7 @@
 
 import AppKit
 
-@objc
+
 public class TintTextImageButtonBuilder {
     
     public var height: CGFloat

@@ -180,7 +180,7 @@ public protocol ImageButtonDelegate {
     func imageButtonMouseExit(button: ImageButton)
 }
 
-@objc
+
 public class ImageButtonImages {
     public var defaultImage, overImage, pressedImage, disabledImage: NSImage?
 }

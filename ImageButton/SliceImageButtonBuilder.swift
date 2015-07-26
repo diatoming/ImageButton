@@ -8,7 +8,7 @@
 
 import AppKit
 
-@objc
+
 public class SliceImageButtonBuilder {
     
     var buttonSize: NSSize?

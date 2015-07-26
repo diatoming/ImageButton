@@ -8,7 +8,7 @@
 
 import AppKit
 
-@objc
+
 public class TintImageButtonBuilder {
     
     public var defaultColor: NSColor = NSColor.blackColor()
